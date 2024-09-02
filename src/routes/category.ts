@@ -1,13 +1,18 @@
 import express from "express";
-import categoryModel from "../models/category";
+import {
+  createCategory,
+  getAllCategories,
+  updateCategoryById,
+  deleteCategoryById
+} from "../services/category";
 
 const router = express.Router();
 
 router.post("/categories", async (request, response) => {
   try {
     const { name, description } = request.body;
-    const newCategory = new categoryModel({ name, description });
-    await newCategory.save();
+    const newCategory = await createCategory(name, description);
+    // await newCategory.save();
     response.status(201).json(newCategory);
   } catch (error) {
     console.error("Error creating category:", error);
@@ -17,7 +22,7 @@ router.post("/categories", async (request, response) => {
 
 router.get("/categories", async (request, response) => {
   try {
-    const categories = await categoryModel.find();
+    const categories = await getAllCategories();
     response.status(200).json(categories);
   } catch (error) {
     console.error("Error fetching categories:", error);
@@ -29,11 +34,7 @@ router.put("/categories/:id", async (request, response) => {
   try {
     const { id } = request.params;
     const { name, description } = request.body;
-    const updatedCategory = await categoryModel.findByIdAndUpdate(
-      id,
-      { name, description },
-      { new: true }
-    );
+    const updatedCategory = await updateCategoryById(id, name, description);
     response.status(200).json(updatedCategory);
   } catch (error) {
     console.error("Error updating category:", error);
@@ -44,7 +45,7 @@ router.put("/categories/:id", async (request, response) => {
 router.delete("/categories/:id", async (request, response) => {
   try {
     const { id } = request.params;
-    await categoryModel.findByIdAndDelete(id);
+    await deleteCategoryById(id);
     response.status(204).send();
   } catch (error) {
     console.error("Error deleting category:", error);
