@@ -1,0 +1,57 @@
+router.post("", async (request, response) => {
+  try {
+    const { name, description } = request.body;
+    const newCategory = await createCategory(name, description);
+    // await newCategory.save();
+    response.status(201).json(newCategory);
+  } catch (error) {
+    console.error("Error creating category:", error);
+    response.status(500).send("Something went wrong!");
+  }
+});
+router.put("/:id", async (request, response) => {
+  try {
+    const { id } = request.params;
+    const { name, description } = request.body;
+    const updatedCategory = await updateCategoryById(id, name, description);
+    response.status(200).json(updatedCategory);
+  } catch (error) {
+    console.error("Error updating category:", error);
+    response.status(500).send("Something went wrong!");
+  }
+});
+
+router.delete("/:id", async (request, response) => {
+  try {
+    const { id } = request.params;
+    await deleteCategoryById(id);
+    response.status(204).send();
+  } catch (error) {
+    console.error("Error deleting category:", error);
+    response.status(500).send("Something went wrong!");
+  }
+});
+
+
+
+
+// export const updateCategoryById = async (
+//   id: string,
+//   name: string,
+//   description: string
+// ) => {
+//   return await categoryModel.findByIdAndUpdate(
+//     id,
+//     { name, description },
+//     { new: true }
+//   );
+// };
+
+// export const deleteCategoryById = async (id: string) => {
+//   return await categoryModel.findByIdAndDelete(id);
+// };
+
+// export const createCategory = async (name: string, description: string) => {
+//   const newCategory = new categoryModel({ name, description });
+//   return await newCategory.save();
+// };

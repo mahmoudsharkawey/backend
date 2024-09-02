@@ -1,12 +1,13 @@
 import dotenv from "dotenv";
-
 import express from "express";
 import mongoose from "mongoose";
 import userRoute from "./routes/userRoute";
 import productRoute from "./routes/productRoute";
 import cartRoute from "./routes/cartRoute";
+import categoryRoute from "./routes/categotyRoute";
 import { seedInitialProducts } from "./services/productService";
 import cors from "cors";
+import { seedInitialCategories } from "./services/categoryService";
 
 dotenv.config();
 
@@ -23,10 +24,12 @@ mongoose
 
 // Seed the products to database
 seedInitialProducts();
+seedInitialCategories();
 
 app.use("/user", userRoute);
 app.use("/product", productRoute);
 app.use("/cart", cartRoute);
+app.use("/categories", categoryRoute);
 
 app.listen(port, () => {
   console.log(`Server is running at: http://localhost:${port}`);
