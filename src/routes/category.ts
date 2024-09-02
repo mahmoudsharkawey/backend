@@ -8,7 +8,7 @@ import {
 
 const router = express.Router();
 
-router.post("/categories", async (request, response) => {
+router.post("", async (request, response) => {
   try {
     const { name, description } = request.body;
     const newCategory = await createCategory(name, description);
@@ -20,7 +20,7 @@ router.post("/categories", async (request, response) => {
   }
 });
 
-router.get("/categories", async (request, response) => {
+router.get("", async (request, response) => {
   try {
     const categories = await getAllCategories();
     response.status(200).json(categories);
@@ -30,7 +30,7 @@ router.get("/categories", async (request, response) => {
   }
 });
 
-router.put("/categories/:id", async (request, response) => {
+router.put("/:id", async (request, response) => {
   try {
     const { id } = request.params;
     const { name, description } = request.body;
@@ -42,7 +42,7 @@ router.put("/categories/:id", async (request, response) => {
   }
 });
 
-router.delete("/categories/:id", async (request, response) => {
+router.delete("/:id", async (request, response) => {
   try {
     const { id } = request.params;
     await deleteCategoryById(id);
