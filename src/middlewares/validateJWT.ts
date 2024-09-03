@@ -3,8 +3,6 @@ import jwt from "jsonwebtoken";
 import userModel from "../models/userModel";
 import { ExtendRequest } from "../types/extendedRequest";
 
-const SECRET_KEY = "12345";
-
 const validateJWT = (req: ExtendRequest, res: Response, next: NextFunction) => {
   const authorizationHeader = req.get("authorization");
 
@@ -20,7 +18,7 @@ const validateJWT = (req: ExtendRequest, res: Response, next: NextFunction) => {
     return;
   }
 
-  jwt.verify(token, SECRET_KEY, async (err, payload) => {
+  jwt.verify(token, process.env.JWT_SECRET || "", async (err, payload) => {
     if (err) {
       res.status(403).send("Invalid token");
       return;

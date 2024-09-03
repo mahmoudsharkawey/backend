@@ -2,7 +2,6 @@ import userModel from "../models/userModel";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
-const SECRET_KEY = "12345";
 
 interface RegisterParams {
   firstName: string;
@@ -63,5 +62,5 @@ export const login = async ({ email, password }: LoginParams) => {
 };
 
 const generateJWT = (data: any) => {
-  return jwt.sign(data, SECRET_KEY || '');
+  return jwt.sign(data, process.env.JWT_SECRET || '');
 };
