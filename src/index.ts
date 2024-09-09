@@ -9,15 +9,16 @@ import categoryRoute from "./routes/categotyRoute";
 import wishListRouter from "./routes/wishlistRoute";
 import { seedInitialProducts } from "./services/productService";
 import { seedInitialCategories } from "./services/categoryService";
+// import connectDB from "./config/db";
 
 dotenv.config();
 const app = express();
-const port = 3001;
+const port = 3000;
 
 app.use(express.json());
 app.use(cors());
 
-// const url = "mongodb://localhost:27017/Ecommerce";
+// const url = "mongodb://localhost:27017/mySystem";
 // mongoose
 //   .connect(url)
 //   .then(() => console.log("Mongo connected!"))
@@ -32,6 +33,8 @@ mongoose
 seedInitialProducts();
 seedInitialCategories();
 
+
+// connectDB();
 app.use("/user", userRoute);
 app.use("/product", productRoute);
 app.use("/cart", cartRoute);

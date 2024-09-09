@@ -8,32 +8,59 @@ export const seedInitialProducts = async () => {
   try {
     const products = [
       {
-        title: "Men's Denim Jacket",
-        description:
-          "A stylish and durable men's denim jacket, perfect for casual wear. Made from high-quality denim fabric for long-lasting comfort.",
-        category: "men",
-        image: "https://example.com/images/denim-jacket.jpg",
-        price: 3000,
-        stock: 15,
+        id: 1,
+        title: "Drawer Small Bedside Table",
+        image:
+          "https://images.dunelm.com/30832616.jpg?$standardplayerdefault$&img404=noimagedefault",
+        price: 599.99,
+        stock: 50,
+        category: "bedroom",
+        rating: 4.5,
+        discount: 10
       },
       {
-        title: "Women's Summer Dress",
-        description:
-          "A light and breezy summer dress for women, ideal for warm weather and beach outings. Features a floral print and a comfortable fit.",
-        category: "women",
-        image: "https://example.com/images/summer-dress.jpg",
-        price: 2000,
-        stock: 25,
-      },
-      {
-        title: "Unisex Hoodie",
-        description:
-          "A cozy unisex hoodie with a soft interior lining. Perfect for layering during cooler weather, available in multiple colors.",
-        category: "kids",
-        image: "https://example.com/images/unisex-hoodie.jpg",
-        price: 2500,
+        id:2,
+        title: "Jayden Counter Height Bar Stool",
+        image:
+          "https://images.dunelm.com/30891311.jpg?$standardplayerdefault$&img404=noimagedefault",
+        price: 999.99,
         stock: 30,
+        category: "kitchen",
+        rating: 4.5,
+        discount: 10,
       },
+      {
+        id:3,
+        title: "Harlow Flatweave Storage Double Sofa Bed",
+        image:
+          "https://images.dunelm.com/30910742.jpg?$standardplayerdefault$&img404=noimagedefault",
+        price: 149.99,
+        stock: 0,
+        category: "living_room",
+        rating: 4.8,
+        discount: 15,
+      },
+      {
+        id:4,
+        title: "Dining Table",
+        image:
+          "https://images.dunelm.com/30890245.jpg?$standardplayerdefault$&img404=noimagedefault",
+        price: 399.99,
+        stock: 20,
+        category: "dining_room",
+        rating: 4.2,
+      },
+      {
+        id:5,
+        title: "Obaby Grace Mini Cot Bed",
+        image:
+          "https://images.dunelm.com/30844493.jpg?$standardplayerdefault$&img404=noimagedefault",
+        price: 399.99,
+        stock: 20,
+        category: "children_room",
+        rating: 4.5,
+        discount: 30
+      }
     ];
 
     const existingProducts = await getAllProducts();
