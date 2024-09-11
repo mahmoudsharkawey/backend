@@ -30,13 +30,8 @@ export const register = async ({
   });
   await newUser.save();
 
-  return {
-    data: {
-      token: generateJWT({ firstName, lastName, email }),
-      name: firstName,
-    },
-    statusCode: 200,
-  };
+  return { data: generateJWT({ firstName, lastName, email }), statusCode: 200 };
+
 };
 
 interface LoginParams {
@@ -54,16 +49,13 @@ export const login = async ({ email, password }: LoginParams) => {
   const passwordMatch = await bcrypt.compare(password, findUser.password);
   if (passwordMatch) {
     return {
-      data: {
-        token: generateJWT({
+        data: generateJWT({
           email,
           firstName: findUser.firstName,
           lastName: findUser.lastName,
         }),
-        name: findUser.firstName,
-      },
-      statusCode: 200,
-    };
+        statusCode: 200,
+      };
   }
 
   return { data: "Incorrect password!", statusCode: 400 };

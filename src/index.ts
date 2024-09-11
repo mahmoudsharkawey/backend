@@ -13,16 +13,10 @@ import { seedInitialCategories } from "./services/categoryService";
 
 dotenv.config();
 const app = express();
-const port = 3000;
+const port = 3001;
 
 app.use(express.json());
 app.use(cors());
-
-// const url = "mongodb://localhost:27017/mySystem";
-// mongoose
-//   .connect(url)
-//   .then(() => console.log("Mongo connected!"))
-//   .catch((err) => console.log("Failed to connect!", err));
 
 mongoose
   .connect(process.env.DATABASE_URL || "")

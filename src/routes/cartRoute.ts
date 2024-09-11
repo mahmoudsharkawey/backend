@@ -18,7 +18,7 @@ router.get("/", validateJWT, async (req: ExtendRequest, res) => {
     const cart = await getActiveCartForUser({ userId, populateProduct: true });
     res.status(200).send(cart);
   } catch (err) {
-    res.status(500).send("Something went wrong!");
+    res.status(500).send("Something went wrong in cart!");
   }
 });
 
@@ -39,7 +39,7 @@ router.post("/items", validateJWT, async (req: ExtendRequest, res) => {
     const response = await addItemToCart({ userId, productId, quantity });
     res.status(response.statusCode).send(response.data);
   } catch {
-    res.status(500).send("Something went wrong!");
+    res.status(500).send("Something went wrong! when addd ");
   }
 });
 

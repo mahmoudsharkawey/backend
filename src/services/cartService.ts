@@ -1,8 +1,6 @@
-import { Types } from "mongoose";
-import { ICart, ICartItem, cartModel } from "../models/cartModel";
+import { ICartItem, cartModel } from "../models/cartModel";
 import productModel from "../models/productModel";
 import { IOrderItem, orderModel } from "../models/orderModel";
-
 interface CreateCartForUser {
   userId: string;
 }
@@ -104,7 +102,6 @@ export const addItemToCart = async ({
     statusCode: 200,
   };
 };
-
 interface UpdateItemInCart {
   productId: any;
   quantity: number;
