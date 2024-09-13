@@ -55,3 +55,85 @@ router.delete("/:id", async (request, response) => {
 //   const newCategory = new categoryModel({ name, description });
 //   return await newCategory.save();
 // };
+
+
+______________________________________________________________________________________
+
+
+
+
+// export const createWishList = async (userId: ObjectId) => {
+//   const newWishList = new wishListModel({ userId, items: [] });
+//   return await newWishList.save();
+// };
+
+// export const getWishList = async (userId: ObjectId) => {
+//   let wishList;
+//   wishList = await wishListModel.findOne({ userId });
+//   if (!wishList) {
+//     wishList = await createWishList(userId);
+//   }
+//   return wishList;
+// };
+
+// export const addItem = async (userId: ObjectId, product: IWishListItem) => {
+//   let wishList = await getWishList(userId);
+//   let isExist = wishList.items.find(
+//     (item) => item.products == product.products
+//   );
+//   if (!isExist) {
+//     wishList.items.push(product);
+//   }
+//   return await wishList.save();
+// };
+
+// export const removeItem = async (userId: ObjectId, productId: any) => {
+//   let wishList = await getWishList(userId);
+//   wishList.items.forEach((item, indx) => {
+//     if (item.productId.toString() == productId) {
+//       wishList.items.splice(indx, 1);
+//     }
+//   });
+//   return await wishList.save();
+// };
+
+// export const clearWishList = async (userId: ObjectId) => {
+//   let wishList = await getWishList(userId);
+//   wishList.items = [];
+//   return await wishList.save();
+// };
+
+
+
+
+// router.post("/", validateJWT, async (req: ExtendRequest, res) => {
+//   try {
+//     const userId = req.user?._id;
+//     const productId: IWishListItem = req.body;
+//     const updatedWishList = await addItem(userId, productId);
+//     res.status(200).send(updatedWishList);
+//   } catch (err) {
+//     res.status(500).send("Something went wrong!");
+//   }
+// });
+
+// router.delete("/:productId", validateJWT, async (req: ExtendRequest, res) => {
+//   try {
+//     const userId = req.user?._id;
+//     const productId = req.params.productId;
+//     const updatedWishList = await removeItem(userId, productId);
+//     res.status(200).send(updatedWishList);
+//   } catch (err) {
+//     res.status(500).send("Something went wrong!");
+//   }
+// });
+
+// router.delete("/", validateJWT, async (req: ExtendRequest, res) => {
+//   try {
+//     const userId = req.user?._id;
+//     const updatedWishList = await clearWishList(userId);
+//     res.status(200).send(updatedWishList);
+//   } catch (err) {
+//     res.status(500).send("Something went wrong!");
+//   }
+// });
